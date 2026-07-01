@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-stub-server'
-$url64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.0/pact-stub-server-windows-x86_64.exe.gz'
-$urlARM64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.0/pact-stub-server-windows-aarch64.exe.gz'
-$checksum64 = 'd549d873ba8f47f7a0195bd71e70112f9bb67e8053ebc7b7dbbccf7fed2cc581'
-$checksumARM64 = '2f87391c9c39e4def7274a82d2907961595c39cedc798d45ba33849eeea7542b'
+$url64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.1/pact-stub-server-windows-x86_64.exe.gz'
+$urlARM64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.1/pact-stub-server-windows-aarch64.exe.gz'
+$checksum64 = '55f3a428ab3745a2e99fe3d4bf83eb538bd4cfac65cebea335c1dcc8f15902ef'
+$checksumARM64 = 'fea6ac0035b893bfc0c08ebad6b1f4fe544bbd7e23fb083d1b2e508dab590a6f'
 
 # Determine architecture
 $is64bit = [System.Environment]::Is64BitOperatingSystem

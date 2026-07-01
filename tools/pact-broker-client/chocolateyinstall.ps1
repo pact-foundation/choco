@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-broker-client'
-$url64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.7.0/pact-broker-cli-x86_64-windows-msvc.exe'
-$urlARM64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.7.0/pact-broker-cli-aarch64-windows-msvc.exe'
-$checksum64 = 'eb36aa6374e160c53cdcd450f7c8f15bff146a49e8b223c55a6db46e9a9a7bc1'
-$checksumARM64 = 'c9de0da41120fccc36b825e2c0bafca94142ce8f09f000bb5373e8f4ab905200'
+$url64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.8.5/pact-broker-cli-x86_64-pc-windows-msvc.zip'
+$urlARM64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.8.5/pact-broker-cli-x86_64-pc-windows-msvc.zip'
+$checksum64 = 'f757bb3a8aa61d2a99e71b49b884604f302b2b36c11cd6f117d7d7be364d64fb'
+$checksumARM64 = 'f757bb3a8aa61d2a99e71b49b884604f302b2b36c11cd6f117d7d7be364d64fb'
 
 # Determine architecture
 $is64bit = [System.Environment]::Is64BitOperatingSystem
@@ -37,17 +37,28 @@ if ($isARM64) {
 Write-Host "Installing Pact Broker Client for Windows $architecture..." -ForegroundColor Green
 
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$executablePath = Join-Path $toolsDir 'pact-broker-client.exe'
+$executableName = 'pact-broker-cli.exe'
+$executablePath = Join-Path $toolsDir $executableName
+$shimName = 'pact-broker-client'
 
 $packageArgs = @{
   packageName   = $packageName
   url64bit      = $url
-  fileFullPath  = $executablePath
+    unzipLocation = $toolsDir
   checksum64    = $checksum
   checksumType64= 'sha256'
 }
 
-Get-ChocolateyWebFile @packageArgs
+Install-ChocolateyZipPackage @packageArgs
+
+if (-not (Test-Path $executablePath)) {
+        throw "Expected executable not found after extraction: $executablePath"
+}
+
+# Prevent automatic shim for pact-broker-cli.exe; we only expose pact-broker-client.
+New-Item -Path ("$executablePath.ignore") -ItemType File -Force | Out-Null
+
+Install-BinFile -Name $shimName -Path $executablePath
 
 Write-Host ""
 Write-Host "Pact Broker Client installed successfully!" -ForegroundColor Green

@@ -1,10 +1,9 @@
 name: Tests
 
 on:
-  # push:
-  #   branches:
-  #     - 'main'
-  #     - 'master'
+  push:
+    branches:
+      - 'main'
   pull_request:
   workflow_dispatch:
 
@@ -26,9 +25,6 @@ jobs:
           "pact-mock-server",
           "pact-broker-client"
           ]
-    defaults:
-      run:
-        shell: ${{ matrix.shell }}
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout Bucket
