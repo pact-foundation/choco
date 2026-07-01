@@ -47,23 +47,23 @@ def get_remote_bucket_manifest_names() -> List[str]:
 def sync_bucket_manifests(bucket_dir: Path, only_existing: bool = True) -> int:
     """Sync bucket manifest files from pact-foundation/scoop."""
     if not bucket_dir.exists():
-        print(f"❌ Bucket directory not found: {bucket_dir}")
+        print(f"[ERROR] Bucket directory not found: {bucket_dir}")
         return 0
 
     try:
         remote_names = get_remote_bucket_manifest_names()
     except (URLError, HTTPError, ValueError) as e:
-        print(f"⚠️  Failed to fetch remote bucket listing: {e}")
+        print(f"[WARN] Failed to fetch remote bucket listing: {e}")
         return 0
 
     local_names = {path.name for path in bucket_dir.glob('*.json')}
     target_names = [name for name in remote_names if not only_existing or name in local_names]
 
     if not target_names:
-        print("⚠️  No matching bucket manifests found to sync")
+        print("[WARN] No matching bucket manifests found to sync")
         return 0
 
-    print(f"📥 Syncing {len(target_names)} manifest file(s) from Scoop bucket...")
+    print(f"[INFO] Syncing {len(target_names)} manifest file(s) from Scoop bucket...")
     success_count = 0
 
     for name in target_names:
@@ -73,9 +73,9 @@ def sync_bucket_manifests(bucket_dir: Path, only_existing: bool = True) -> int:
         try:
             destination.write_text(fetch_text_from_url(raw_url), encoding='utf-8')
             success_count += 1
-            print(f"✅ Synced {name}")
+            print(f"[OK] Synced {name}")
         except (URLError, HTTPError, OSError) as e:
-            print(f"⚠️  Failed to sync {name}: {e}")
+            print(f"[WARN] Failed to sync {name}: {e}")
 
     return success_count
 
@@ -198,11 +198,11 @@ def update_chocolatey_install(install_path: Path, manifest: Dict[str, Any]) -> b
 
 def process_tool(bucket_dir: Path, tool_name: str, manifest: Dict[str, Any]) -> None:
     """Process a single tool's manifest and update its files."""
-    print(f"\n🔧 Processing {tool_name}...")
+    print(f"\n[INFO] Processing {tool_name}...")
     
     version = manifest.get('version')
     if not version:
-        print(f"❌ No version found in manifest for {tool_name}")
+        print(f"[ERROR] No version found in manifest for {tool_name}")
         return
     
     # Update .nuspec file
@@ -219,22 +219,22 @@ def main():
     bucket_dir = script_dir / "bucket"
     
     if not bucket_dir.exists():
-        print(f"❌ Bucket directory not found: {bucket_dir}")
+        print(f"[ERROR] Bucket directory not found: {bucket_dir}")
         return 1
     
-    print("🚀 Starting Chocolatey package updates from manifest files...")
+    print("[INFO] Starting Chocolatey package updates from manifest files...")
 
     synced_count = sync_bucket_manifests(bucket_dir, only_existing=True)
     if synced_count > 0:
-        print(f"📦 Synced {synced_count} bucket manifest file(s) from upstream")
+        print(f"[OK] Synced {synced_count} bucket manifest file(s) from upstream")
     else:
-        print("⚠️  Proceeding with local bucket files (no upstream sync completed)")
+        print("[WARN] Proceeding with local bucket files (no upstream sync completed)")
     
     # Get all JSON files in bucket directory
     manifest_files = list(bucket_dir.glob("*.json"))
     
     if not manifest_files:
-        print("❌ No JSON manifest files found in bucket directory")
+        print("[ERROR] No JSON manifest files found in bucket directory")
         return 1
     
     success_count = 0
@@ -249,15 +249,15 @@ def main():
             success_count += 1
             
         except Exception as e:
-            print(f"❌ Error processing {manifest_file.name}: {e}")
+            print(f"[ERROR] Error processing {manifest_file.name}: {e}")
     
-    print(f"\n📊 Summary: {success_count}/{total_count} tools processed successfully")
+    print(f"\n[INFO] Summary: {success_count}/{total_count} tools processed successfully")
     
     if success_count == total_count:
-        print("🎉 All packages updated successfully!")
+        print("[OK] All packages updated successfully!")
         return 0
     else:
-        print("⚠️  Some packages had issues. Please check the output above.")
+        print("[WARN] Some packages had issues. Please check the output above.")
         return 1
 
 if __name__ == "__main__":
