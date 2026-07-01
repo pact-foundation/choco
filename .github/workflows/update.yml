@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  smoke-test:
+  update-packages:
     runs-on: windows-latest
     steps:
       - name: Checkout Bucket

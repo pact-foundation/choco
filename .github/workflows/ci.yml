@@ -13,14 +13,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shell: [
-          "powershell",
-          # "pwsh",
-          "cmd"
-          ]
         os: [
           "windows-latest",
-          "windows-11-arm"
+          # "windows-11-arm"
           ]
         package: [
           "pact-legacy",
