@@ -24,9 +24,9 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $pactLegacy = @{
   packageName   = $env:ChocolateyPackageName
   unzipLocation = $toolsDir
-  url           = 'https://github.com/pact-foundation/pact-standalone/releases/download/v2.5.6/pact-2.5.6-windows-x86_64.zip'
+  url           = 'https://github.com/pact-foundation/pact-standalone/releases/download/v2.6.4/pact-2.6.4-windows-x86_64.zip'
   softwareName  = 'pact-legacy'
-  checksum      = '2c4a8e39e7e1f1ccc004b3ab1dc0817335c2826f9565f8afd715d2e7398223e9'
+  checksum      = '3e189b2958631c07de2f3ce5985fb24767a6bfc01afbb033b58753bd1ce5fb6e'
   checksumType  = 'sha256' 
 }
  # https://docs.chocolatey.org/en-us/create/functions/install-chocolateypackage
