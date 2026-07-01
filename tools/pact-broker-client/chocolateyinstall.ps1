@@ -37,17 +37,28 @@ if ($isARM64) {
 Write-Host "Installing Pact Broker Client for Windows $architecture..." -ForegroundColor Green
 
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$executablePath = Join-Path $toolsDir 'pact-broker-client.exe'
+$executableName = 'pact-broker-cli.exe'
+$executablePath = Join-Path $toolsDir $executableName
+$shimName = 'pact-broker-client'
 
 $packageArgs = @{
   packageName   = $packageName
   url64bit      = $url
-  fileFullPath  = $executablePath
+    unzipLocation = $toolsDir
   checksum64    = $checksum
   checksumType64= 'sha256'
 }
 
-Get-ChocolateyWebFile @packageArgs
+Install-ChocolateyZipPackage @packageArgs
+
+if (-not (Test-Path $executablePath)) {
+        throw "Expected executable not found after extraction: $executablePath"
+}
+
+# Prevent automatic shim for pact-broker-cli.exe; we only expose pact-broker-client.
+New-Item -Path ("$executablePath.ignore") -ItemType File -Force | Out-Null
+
+Install-BinFile -Name $shimName -Path $executablePath
 
 Write-Host ""
 Write-Host "Pact Broker Client installed successfully!" -ForegroundColor Green

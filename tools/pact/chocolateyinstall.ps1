@@ -42,13 +42,17 @@ $executablePath = Join-Path $toolsDir 'pact.exe'
 
 $packageArgs = @{
   packageName   = $packageName
-  fileFullPath  = $executablePath
   url64bit      = $url
+    unzipLocation = $toolsDir
   checksum64    = $checksum
   checksumType64= 'sha256'
 }
 
-Get-ChocolateyWebFile @packageArgs
+Install-ChocolateyZipPackage @packageArgs
+
+if (-not (Test-Path $executablePath)) {
+    throw "Expected executable not found after extraction: $executablePath"
+}
 
 
 Write-Host ""
