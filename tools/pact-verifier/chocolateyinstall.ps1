@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-verifier'
-$url64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.3.0/pact-verifier-windows-x86_64.exe.gz'
-$urlARM64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.3.0/pact-verifier-windows-aarch64.exe.gz'
-$checksum64 = 'fb4545c93887eac45fb33d9904ceda2088ddf647cd95439240bde6b51e07b1f7'
-$checksumARM64 = '4e054f3afd493cca9ff26f3d09cd65bb87735b5ac812bca34aa2bdb28927d1ba'
+$url64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.3.3/pact-verifier-windows-x86_64.exe.gz'
+$urlARM64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.3.3/pact-verifier-windows-aarch64.exe.gz'
+$checksum64 = '3839e9cc2dc6fac1672712765c756ef7861fbef3d6d0c9af7bf43f7766b47925'
+$checksumARM64 = '62fca25320e336ae45f073635c923a7c6781d123075fe29bcb2db1d2d8ea9020'
 
 # Determine architecture
 $is64bit = [System.Environment]::Is64BitOperatingSystem
