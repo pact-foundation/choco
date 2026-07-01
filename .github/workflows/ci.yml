@@ -58,7 +58,7 @@ jobs:
         run: |
           choco uninstall ${{ matrix.package }}
       - name: Publish archives and packages
-        if: github.ref == 'refs/heads/main' && matrix.shell == 'powershell' && matrix.os == 'windows-latest'
+        if: github.ref == 'refs/heads/main' && matrix.os == 'windows-latest'
         uses: softprops/action-gh-release@master
         with:
           tag_name: choco
