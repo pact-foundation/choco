@@ -8,15 +8,76 @@ latest version, URLs, and checksums.
 """
 
 import json
-import os
 import re
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Dict, Any, List
+from urllib.error import URLError, HTTPError
+from urllib.request import urlopen
+
+SCOOP_BUCKET_API_URL = "https://api.github.com/repos/pact-foundation/scoop/contents/bucket"
+SCOOP_BUCKET_RAW_URL = "https://raw.githubusercontent.com/pact-foundation/scoop/main/bucket/{name}"
 
 def load_manifest(manifest_path: Path) -> Dict[str, Any]:
     """Load and parse a JSON manifest file."""
     with open(manifest_path, 'r', encoding='utf-8') as f:
         return json.load(f)
+
+def fetch_json_from_url(url: str) -> Any:
+    """Fetch and parse a JSON document from a URL."""
+    with urlopen(url, timeout=30) as response:
+        return json.loads(response.read().decode('utf-8'))
+
+def fetch_text_from_url(url: str) -> str:
+    """Fetch raw text content from a URL."""
+    with urlopen(url, timeout=30) as response:
+        return response.read().decode('utf-8')
+
+def get_remote_bucket_manifest_names() -> List[str]:
+    """Get all JSON manifest names from the upstream Scoop bucket."""
+    content = fetch_json_from_url(SCOOP_BUCKET_API_URL)
+    if not isinstance(content, list):
+        raise ValueError("Unexpected GitHub API response for bucket listing")
+
+    return sorted(
+        item['name']
+        for item in content
+        if item.get('type') == 'file' and str(item.get('name', '')).endswith('.json')
+    )
+
+def sync_bucket_manifests(bucket_dir: Path, only_existing: bool = True) -> int:
+    """Sync bucket manifest files from pact-foundation/scoop."""
+    if not bucket_dir.exists():
+        print(f"❌ Bucket directory not found: {bucket_dir}")
+        return 0
+
+    try:
+        remote_names = get_remote_bucket_manifest_names()
+    except (URLError, HTTPError, ValueError) as e:
+        print(f"⚠️  Failed to fetch remote bucket listing: {e}")
+        return 0
+
+    local_names = {path.name for path in bucket_dir.glob('*.json')}
+    target_names = [name for name in remote_names if not only_existing or name in local_names]
+
+    if not target_names:
+        print("⚠️  No matching bucket manifests found to sync")
+        return 0
+
+    print(f"📥 Syncing {len(target_names)} manifest file(s) from Scoop bucket...")
+    success_count = 0
+
+    for name in target_names:
+        raw_url = SCOOP_BUCKET_RAW_URL.format(name=name)
+        destination = bucket_dir / name
+
+        try:
+            destination.write_text(fetch_text_from_url(raw_url), encoding='utf-8')
+            success_count += 1
+            print(f"✅ Synced {name}")
+        except (URLError, HTTPError, OSError) as e:
+            print(f"⚠️  Failed to sync {name}: {e}")
+
+    return success_count
 
 def get_tool_name_from_manifest(manifest_file: str) -> str:
     """Extract tool name from manifest filename."""
@@ -162,6 +223,12 @@ def main():
         return 1
     
     print("🚀 Starting Chocolatey package updates from manifest files...")
+
+    synced_count = sync_bucket_manifests(bucket_dir, only_existing=True)
+    if synced_count > 0:
+        print(f"📦 Synced {synced_count} bucket manifest file(s) from upstream")
+    else:
+        print("⚠️  Proceeding with local bucket files (no upstream sync completed)")
     
     # Get all JSON files in bucket directory
     manifest_files = list(bucket_dir.glob("*.json"))
