@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>pact-broker-client</id>
-    <version>0.8.5</version>
+    <version>0.8.6</version>
     <packageSourceUrl>https://github.com/pact-foundation/choco</packageSourceUrl>
     <owners>pact-foundation</owners>
     <title>Pact Broker Client</title>

@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact'
-$url64 = 'https://github.com/pact-foundation/pact-cli/releases/download/v0.10.5/pact-x86_64-pc-windows-msvc.zip'
-$urlARM64 = 'https://github.com/pact-foundation/pact-cli/releases/download/v0.10.5/pact-x86_64-pc-windows-msvc.zip'
-$checksum64 = '7e45291b000ebc46d1f46eaaefad36b315ae249139f3441b7cf998d094bbc068'
-$checksumARM64 = '7e45291b000ebc46d1f46eaaefad36b315ae249139f3441b7cf998d094bbc068'
+$url64 = 'https://github.com/pact-foundation/pact-cli/releases/download/v0.10.7/pact-x86_64-pc-windows-msvc.zip'
+$urlARM64 = 'https://github.com/pact-foundation/pact-cli/releases/download/v0.10.7/pact-x86_64-pc-windows-msvc.zip'
+$checksum64 = 'c49282c58fa1d94d9595cf6da20d2b45d899441b492ec3355171a554a10d3009'
+$checksumARM64 = 'c49282c58fa1d94d9595cf6da20d2b45d899441b492ec3355171a554a10d3009'
 
 
 # Determine architecture (ARM64 detection is unsuppported by Choco)
