@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-broker-client'
-$url64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.8.8/pact-broker-cli-x86_64-pc-windows-msvc.zip'
-$urlARM64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.8.8/pact-broker-cli-x86_64-pc-windows-msvc.zip'
-$checksum64 = 'ebd944d5fd2581f7fcef4304e28700140103f2a7b66304422988f0bfa851f5b5'
-$checksumARM64 = 'ebd944d5fd2581f7fcef4304e28700140103f2a7b66304422988f0bfa851f5b5'
+$url64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.9.0/pact-broker-cli-x86_64-pc-windows-msvc.zip'
+$urlARM64 = 'https://github.com/pact-foundation/pact-broker-cli/releases/download/v0.9.0/pact-broker-cli-x86_64-pc-windows-msvc.zip'
+$checksum64 = 'cfea12d5998ed18061195888b7e43da4ca8550ebf962fc0c3d891d08907ad470'
+$checksumARM64 = 'cfea12d5998ed18061195888b7e43da4ca8550ebf962fc0c3d891d08907ad470'
 
 # Determine architecture
 $is64bit = [System.Environment]::Is64BitOperatingSystem
