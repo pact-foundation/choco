@@ -19,18 +19,19 @@ jobs:
         id: create-pr
         shell: bash
         run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "Packages already match the scoop manifests; no PR needed"
+            exit 0
+          fi
+          BRANCH="deps_update/${GITHUB_RUN_ID}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git config --global user.name "${GITHUB_ACTOR}"
           git config pull.ff only
-          git checkout -b deps_update
+          git checkout -b "$BRANCH"
           git add .
           git commit -m "chore(release): deps update"
-          git push --set-upstream origin deps_update
-
-          echo "👏  Go and open that PR now:"
-          echo "🔗  $homepage/compare/master...deps_update"
-
-          gh pr create --title "chore(release): deps_update" --fill
+          git push --set-upstream origin "$BRANCH"
+          gh pr create --title "chore(release): deps update" --fill
           echo "🎉 Done!"
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
