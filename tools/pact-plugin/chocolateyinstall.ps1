@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-plugin'
-$url64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.2.0/pact-plugin-windows-x86_64.exe.gz'
-$urlARM64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.2.0/pact-plugin-windows-aarch64.exe.gz'
-$checksum64 = '8c117cff6cb353312f7f1caed246ef8a8592c4e9a9fa1edbdc4ac7df66cf9d39'
-$checksumARM64 = 'd11ae37beba1b31420fa44c77654528a09215a7fd0885db86bbc388c1dba2d16'
+$url64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-x86_64.exe.gz'
+$urlARM64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-aarch64.exe.gz'
+$checksum64 = '557842458a8f1d9b7aa47a45149b5ff065285025f881800ceb0487f956685c37'
+$checksumARM64 = '906196428fbbfa6ccb181618f8ec9eec29b0af286a749a47b1241f385a2121a0'
 
 # Determine architecture
 $is64bit = [System.Environment]::Is64BitOperatingSystem
