@@ -1,8 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-stub-server'
-$url64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.1/pact-stub-server-windows-x86_64.exe.gz'
-$urlARM64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.1/pact-stub-server-windows-aarch64.exe.gz'
+$url64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.1/pact-stub-server-windows-x86_64.exe.gz#/pact-stub-server.exe.gz'
+$urlARM64 = 'https://github.com/pact-foundation/pact-stub-server/releases/download/v0.7.1/pact-stub-server-windows-aarch64.exe.gz#/pact-stub-server.exe.gz'
 $checksum64 = '55f3a428ab3745a2e99fe3d4bf83eb538bd4cfac65cebea335c1dcc8f15902ef'
 $checksumARM64 = 'fea6ac0035b893bfc0c08ebad6b1f4fe544bbd7e23fb083d1b2e508dab590a6f'
 

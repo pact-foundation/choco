@@ -1,8 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-plugin'
-$url64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-x86_64.exe.gz'
-$urlARM64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-aarch64.exe.gz'
+$url64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-x86_64.exe.gz#/pact-plugin.exe.gz'
+$urlARM64 = 'https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-aarch64.exe.gz#/pact-plugin.exe.gz'
 $checksum64 = '557842458a8f1d9b7aa47a45149b5ff065285025f881800ceb0487f956685c37'
 $checksumARM64 = '906196428fbbfa6ccb181618f8ec9eec29b0af286a749a47b1241f385a2121a0'
 

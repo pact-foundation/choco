@@ -5,13 +5,13 @@
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-x86_64.exe.gz",
+            "url": "https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-x86_64.exe.gz#/pact-mock-server.exe.gz",
             "hash": "d6acb398b25874c73ba01e2f0749536ce22b66d9636b6284a51b2e4f13822ec8",
             "bin": "pact-mock-server.exe"
         },
         "32bit": {},
         "arm64": {
-            "url": "https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-aarch64.exe.gz",
+            "url": "https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-aarch64.exe.gz#/pact-mock-server.exe.gz",
             "hash": "69a1cb8edc0d66c04e53c08dd38719fb2e575aea894a6e322a09a4c3854767d2",
             "bin": "pact-mock-server.exe"
         }
