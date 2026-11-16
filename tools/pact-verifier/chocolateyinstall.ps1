@@ -1,8 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-verifier'
-$url64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.5.0/pact-verifier-windows-x86_64.exe.gz'
-$urlARM64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.5.0/pact-verifier-windows-aarch64.exe.gz'
+$url64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.5.0/pact-verifier-windows-x86_64.exe.gz#/pact-verifier.exe.gz'
+$urlARM64 = 'https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v1.5.0/pact-verifier-windows-aarch64.exe.gz#/pact-verifier.exe.gz'
 $checksum64 = '074a411a53f6ba3da83ce88616d03d435d7d348134a3b74130dac6b082fd89c9'
 $checksumARM64 = 'cd4d71470b983ae102d820ca486319c112a64dce7237c56b738d462a534f0c58'
 

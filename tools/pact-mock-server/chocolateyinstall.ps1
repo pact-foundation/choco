@@ -1,8 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
 $packageName = 'pact-mock-server'
-$url64 = 'https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-x86_64.exe.gz'
-$urlARM64 = 'https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-aarch64.exe.gz'
+$url64 = 'https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-x86_64.exe.gz#/pact-mock-server.exe.gz'
+$urlARM64 = 'https://github.com/pact-foundation/pact-core-mock-server/releases/download/pact_mock_server_cli-v2.0.2/pact-mock-server-windows-aarch64.exe.gz#/pact-mock-server.exe.gz'
 $checksum64 = 'd6acb398b25874c73ba01e2f0749536ce22b66d9636b6284a51b2e4f13822ec8'
 $checksumARM64 = '69a1cb8edc0d66c04e53c08dd38719fb2e575aea894a6e322a09a4c3854767d2'
 

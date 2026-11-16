@@ -5,13 +5,13 @@
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-x86_64.exe.gz",
+            "url": "https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-x86_64.exe.gz#/pact-plugin.exe.gz",
             "hash": "557842458a8f1d9b7aa47a45149b5ff065285025f881800ceb0487f956685c37",
             "bin": "pact-plugin.exe"
         },
         "32bit": {},
         "arm64": {
-            "url": "https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-aarch64.exe.gz",
+            "url": "https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v0.3.1/pact-plugin-windows-aarch64.exe.gz#/pact-plugin.exe.gz",
             "hash": "906196428fbbfa6ccb181618f8ec9eec29b0af286a749a47b1241f385a2121a0",
             "bin": "pact-plugin.exe"
         }
